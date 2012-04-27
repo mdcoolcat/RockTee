@@ -1,0 +1,121 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!--
+
+  Created using /
+  Source can be edited via /awagi/edit
+
+-->
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></script>
+<title>Sandbox</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<style type="text/css" media="screen">
+body { background-color: #000; font: 16px Helvetica, Arial; color: #fff; overflow-x: hidden;}
+div { margin: 5px; padding: 0;}
+ul { margin: 0; padding: 0;}
+li { list-style: none; padding: 0; margin: 0; float:left;}
+#selectActions span, #selectActions li {float: left; padding: 5px;}
+.droppableContainer { width: 48%; float: left; min-height: 200px}
+.droppableContainer li { height: 90px; width: 110px; margin: 2px; background-color: white; padding-bottom: 4px;}
+.droppableContainer img { width: 90px; max-height: 90px; max-width: 90px; width: 90px; vertical-align: middle;}
+.droppableContainer input { height: 90px; vertical-align: middle; }
+#draggingContainer { width:48%; }
+#draggingContainer input { visibility: hidden;}
+#dragSource {  }
+#dropTarget { border: 3px dashed grey;}
+#dropTarget input { visibility: hidden; }
+</style>
+</head>
+<body>
+  <div id="selectActions">
+    <span>Select:</span>
+    <ul>
+      <li><a id="selectAll" href="#">all</a></li>
+      <li><a id="selectNone" href="#">none</a></li>
+      <li><a id="selectInvert" href="#">invert</a></li>
+    </ul>
+  </div>
+  <div style="clear:left;">
+    <div id="dragSource" class="droppableContainer">
+      <ul>
+        <li><img src="http://imgs.xkcd.com/comics/drapes.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/misusing_slang.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/donner.jpg" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/a_new_captcha_approach.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/bug.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/open_source.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/tag_combination.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/a_simple_plan.jpg" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/it_might_be_cool.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/hedgeclipper.jpg" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/pep_talk.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/regular_expressions.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/pwned.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/post_office_showdown.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/im_an_idiot.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/pointers.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/chess_photo.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/50_ways.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/e_to_the_pi_times_i.png" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/self-reference.jpg" /><input type="checkbox" /></li>
+        <li><img src="http://imgs.xkcd.com/comics/starwatching.png" /><input type="checkbox" /></li>
+      </ul>
+    </div>
+
+    <div id="dropTarget" class="droppableContainer">
+    </div>
+  </div>
+<script>
+$(function(){
+  
+  $('#dragSource li').draggable({
+    helper: function(){
+      var selected = $('#dragSource input:checked').parents('li');
+      if (selected.length === 0) {
+        selected = $(this);
+      }
+      var container = $('<div/>').attr('id', 'draggingContainer');
+      container.append(selected.clone());
+      return container; 
+    }
+  });
+  
+  $('#dropTarget').droppable({
+    tolerance: 'pointer',
+    drop: function(event, ui){
+      $(this).append(ui.helper.children());
+    }
+  });
+  
+  $('#selectAll').click(function(){
+    $('#dragSource input').attr('checked', 'checked');
+    return false;
+  });
+  
+  $('#selectNone').click(function(){
+    $('#dragSource input').removeAttr('checked');
+    return false;
+  });
+  
+  $('#selectInvert').click(function(){
+    $('#dragSource input').each(function(){
+      var $this = $(this);
+      if ($this.attr('checked')) {
+        $this.removeAttr('checked');
+      }
+      else {
+        $this.attr('checked', 'checked');
+      }
+    });
+    return false;
+  });
+});
+</script>
+<script src="/js/render/edit.js"></script>
+<script>var _gaq=[['_setAccount','UA-1656750-13'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)})(document,'script')</script></body>
+</html>

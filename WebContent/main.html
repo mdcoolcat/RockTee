@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+body {
+	background-color: #000;
+	font: 16px Helvetica, Arial;
+	color: #fff;
+	overflow-x: hidden;
+}
+
+div {
+	margin: 5px;
+	padding: 0;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	float: left;
+}
+
+#selectActions span,#selectActions li {
+	float: left;
+	padding: 5px;
+}
+
+.droppableContainer {
+	border: 3px dashed #cacaca;
+	width: 240px;
+	height: 330px;
+	position: relative;
+	left: 150px;
+	top: 100px;
+	text-align: center;
+	font-size: 30px;
+	color: #cacaca;
+}
+
+.droppableContainer li {
+	height: 90px;
+	width: 110px;
+	margin: 2px;
+	background-color: white;
+	padding-bottom: 4px;
+}
+
+.droppableContainer img {
+	width: 90px;
+	max-height: 90px;
+	max-width: 90px;
+	width: 90px;
+	vertical-align: middle;
+}
+
+.droppableContainer input {
+	height: 90px;
+	vertical-align: middle;
+}
+
+#draggingContainer {
+	width: 48%;
+}
+
+#draggingContainer input {
+	visibility: hidden;
+}
+
+#dragSource {
+	
+}
+
+#dropTarget { /* 	border: 3px dashed grey;
+ */
+	
+}
+
+#dropTarget input {
+	visibility: hidden;
+}
+</style>
+<link rel="stylesheet"
+	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"
+	type="text/css" />
+
+<link href="styles/mainStyle.css" rel="stylesheet" type="text/css" />
+<!--[if IE]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+
+<!-- jQuery -->
+<script type="text/javascript" src="scripts/jquery-1.7.2.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+
+<script type="text/javascript" src="scripts/init.js"></script>
+<!-- toolbox tab -->
+<script type="text/javascript" src="scripts/tabbed.layout.js"></script>
+
+<!-- drag and drop -->
+<script type="text/javascript" src="scripts/ui.js"></script>
+
+<!-- wColorPicker -->
+<link rel="Stylesheet" type="text/css"
+	href="styles/wColorPicker.1.2.min.css" />
+<script type="text/javascript" src="scripts/wColorPicker.1.2.min.js"></script>
+
+<!-- wPaint -->
+<link rel="Stylesheet" type="text/css" href="styles/wPaint.1.3.css" />
+<script type="text/javascript" src="scripts/wPaint.1.3.js"></script>
+
+<!-- toolbox google search -->
+<script
+	src="http://www.google.com/jsapi?key=AIzaSyA5m1Nc8ws2BbmPRwKu5gFradvD_hgq6G0"
+	type="text/javascript"></script>
+<script type="text/javascript">
+	google.load("search", "1", {
+		"nocss" : true
+	});
+
+	// function will bind event to all images
+	function bind_event() {
+		$("a.gs-image").bind(
+				"click",
+				function(e) {
+					$("#imageContainer").html(
+							'<img src="' + $(this).attr('href')
+									+ '" alt="Loading Image..." />');
+
+					$("a.gs-image img").removeClass();
+					$("a.gs-image img").addClass("gs-image");
+					$(this).find("img").removeClass();
+					$(this).find("img").addClass("selectImage");
+					$(this).draggable({
+						containment : '.draw_area',
+						cursor : 'pointer',
+						helper : 'clone',
+					});
+					$('#debug').text($(this).attr('class'));
+
+					if ($(".gs-imageResult").length <= 0) {
+						$("#gsearchErr").css("display", "block");
+					} else {
+						$("#gsearchErr").css("display", "none");
+					}
+
+					return false;
+				});
+
+		$("div.gsc-cursor")
+				.prepend(
+						"<div class='clear' style='margin-top:10px;clear:both;'></div>");
+
+		$(".gsc-trailing-more-results").css("display", "none");
+
+	}
+
+	// these class encapsulates a left and right search control
+	// both controls are driven by a shared search form
+	function OnLoad() {
+
+		// create a tabbed mode search control
+		var tabbed = new google.search.SearchControl();
+
+		//restrict results: search only moderated
+
+		// Set the Search Control to get the most number of results
+		tabbed.setResultSetSize(google.search.Search.LARGE_RESULTSET);
+		var imgSearch = new google.search.ImageSearch();
+		// Restrict to extra large images only
+		imgSearch.setRestriction(google.search.ImageSearch.RESTRICT_IMAGESIZE,
+				google.search.ImageSearch.IMAGESIZE_MEDIUM);
+		imgSearch.setRestriction(google.search.RESTRICT_SAFESEARCH,
+				google.search.SAFESEARCH_STRICT);
+		// create image searchers.
+		tabbed.addSearcher(imgSearch);
+
+		// proprofscc: On search completeion
+		tabbed.setSearchCompleteCallback(this, bind_event);
+
+		// draw in tabbed layout mode
+		var drawOptions = new google.search.DrawOptions();
+		drawOptions.setDrawMode(google.search.SearchControl.DRAW_MODE_TABBED);
+
+		// Draw the tabbed view in the content div
+		tabbed.draw(document.getElementById("imgSearchControl"), drawOptions);
+
+		// Search!
+		tabbed.execute("");
+	}
+
+	google.setOnLoadCallback(OnLoad);
+</script>
+
+<title>Main</title>
+</head>
+<body>
+	<div id="big_wrapper">
+		<div class="wrapper col1">
+			<div id="header">
+				<div class="fl_left">
+					<h1>
+						<a href="#">RockTee!</a>
+					</h1>
+					<h3>Everyone Can Be A Designer!</h3>
+				</div>
+				<div class="fl_right">
+					<a href="#"></a>
+				</div>
+				<br class="clear" />
+			</div>
+		</div>
+		<!-- ####################################################################################################### -->
+		<div class="wrapper col2">
+			<nav id="topbar">
+			<div id="topnav">
+				<ul>
+					<li class="active"><a href="index.jsp">Home</a></li>
+					<li><a href="style-demo.jsp">Style Demo</a></li>
+					<li><a href="full-width.jsp"></a></li>
+					<li><a href="#">Account</a>
+						<ul>
+							<li><a href="#">View Your Library</a></li>
+							<li><a href="#">Manage Your Account</a></li>
+							<li><a href="#">Log Out</a></li>
+						</ul></li>
+					<li class="active last"><a href="gallery.jsp">Templates</a></li>
+				</ul>
+			</div>
+			<div id="search">
+				<form action="#" method="post">
+					<fieldset>
+						<legend>Site Search</legend>
+						<input type="text" value="Search Our Website&hellip;"
+							onfocus="this.value=(this.value=='Search Our Website&hellip;')? '' : this.value ;" />
+						<input type="submit" name="go" id="go" value="Search" />
+					</fieldset>
+				</form>
+			</div>
+			<br class="clear" />
+			</nav>
+		</div>
+
+		<!-- ####################################################################################################### -->
+		<p id="debug">debug</p>
+
+		<section id="main">
+		<div>
+			<a href="javascript:saveImage();">Save Tee</a>
+		</div>
+		<br />
+		<div id="selectActions">
+			<span>Select:</span>
+			<ul>
+				<li><a id="selectAll" href="#">all</a></li>
+				<li><a id="selectNone" href="#">none</a></li>
+				<li><a id="selectInvert" href="#">invert</a></li>
+			</ul>
+		</div>
+		<div class="tshirt" id="front">
+			<div id="dropTarget" class="droppableContainer"></div>
+			<script>
+				function loadImage() {
+					$("#wPaint").wPaint("image", "data:image/");
+				}
+
+				function saveImage() {
+					var imageData = $("#wPaint").wPaint("image");
+
+					$("#canvasImage").attr('src', imageData);
+					$("#canvasImageData").val(imageData);
+				}
+			</script>
+			<!-- <div class="draw_area"></div> -->
+			<!--  ondrop="drop(event)" ondragover="allowDrop(event)"> -->
+		</div>
+		<div class="tshirt" id="back">
+			<div id="dropTarget" class="droppableContainer"></div>
+		</div>
+		<!-- 		<div class="draw_area"></div>
+ --> <!-- ondrop="drop(event)" ondragover="allowDrop(event)"> -->
+	</div>
+	</section>
+
+	<section id="tool_box"> <header id="search_header">
+	<h2>Tool Box</h2>
+	</header> <nav>
+	<ul>
+		<li><a href="#image">Image</a></li>
+		<li><a href="#doodle">Doodle</a></li>
+		<li><a href="#text">Text</a></li>
+	</ul>
+	</nav> <section class="tab" id="image"> <!-- 			<form class="search_form" action="googlesearch.do" method="POST">
+				<input id="gsearch" type="text" name="object" size="25"> <input
+					name="action" type="submit" value="Search" />
+			</form> --> Upload Images
+	<form class="search_form" action="upload.do" method="POST"
+		enctype="multipart/form-data">
+		<input id="images" name="path" type="file" accept="image/*"
+			style="font-size: 16px; width: 200px; padding: 6px 5px 6px 5px; margin-top: 5px; color: #aaa; border: 2px solid #ccc; -moz-border-radius: 4px; -webkit-border-radius: 4px;" />
+		<input id="upload_img" class="gsc-search-button ui-widget"
+			name="action" type="submit" value="Upload" />
+	</form>
+	<form class="search_form" action="libsearch.do" method="POST">
+		<input id="libsearch" type="text" name="object"
+			style="font-size: 16px; width: 250px; padding: 6px 5px 6px 5px; margin-top: 5px; color: #aaa; border: 2px solid #ccc; -moz-border-radius: 4px; -webkit-border-radius: 4px;">
+		<input name="action" class="gsc-search-button ui-widget" type="submit"
+			value="Search" />
+	</form>
+
+	Search Images - <small>powered by <img class="gsc-branding-img"
+		style="vertical-align: middle"
+		src="http://www.google.com/uds/css/small-logo.png" /></small>
+	<div id="imgSearchControl" class="search-control">Loading...</div>
+
+	<!--Remove all floating-->
+	<div class="clear"></div>
+	<!--Image will be shown here-->
+	<div id='imageContainer'></div>
+
+	<section class="search_result">
+		<div id="dragSource" class="grid_wrapper">
+			<ul>
+				<li><img class="mypic" height="88px" src="images/mermaid.png" /><input
+					type="checkbox" /></li>
+				<li><img class="mypic" height="88px"
+					src="images/pink skull.png" /><input type="checkbox" /></li>
+				<li><img class="mypic" height="88px" src="images/mermaid.png" /><input
+					type="checkbox" /></li>
+				<li><img class="mypic" height="88px" src="images/mermaid.png" /><input
+					type="checkbox" /></li>
+			</ul>
+		</div>
+	<div class="left1"></div>
+	<div class="left1"></div>
+	<div class="wrapper">
+		<div class="left1"></div>
+		<div class="left1"></div>
+		<div class="left1"></div>
+	</div>
+
+	</section>
+	</section>
+	<section class="tab" id="doodle"> </section>
+	<section class="tab" id="text">
+	<p>text</p>
+	</section>
+	<br />
+	<br />
+
+	<img id="canvasImage" src="" />
+	</section>
+
+
+
+	<footer id="the_footer"> Copyright RockTee 2012 </footer>
+	</div>
+</body>
+</html>

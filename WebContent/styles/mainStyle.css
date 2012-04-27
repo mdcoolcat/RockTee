@@ -1,0 +1,616 @@
+/**
+File: mainStyle CSS
+Author: Danielle Mei (dmei@andrew.cmu.edu)
+Description: layout of design page 
+*/
+@CHARSET "UTF-8";
+
+* {
+	margin: 0px;
+	padding: 0px;
+	-webkit-user-select: none;
+}
+
+/* ----------------------------------------------Generalise-------------------------------------*/
+header,footer,section,aside,nav,article,hgroup {
+	display: block;
+}
+
+#header,#topbar,#breadcrumb,#featured_intro,#container,#footer,#copyright
+	{
+	position: relative;
+	margin: 0 auto 0;
+	display: block;
+	width: 960px;
+}
+
+a,a:visited {
+	text-decoration: none;
+	color: #666;
+}
+
+a:hover {
+	color: #999;
+}
+
+.fl_left {
+	float: left;
+}
+
+.fl_right {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+br.clear {
+	clear: both;
+	margin-top: -15px;
+}
+/* ----------------------------------------------Header-------------------------------------*/
+#header {
+	padding: 2px 0 20px 0;
+}
+
+#header .fl_left {
+	display: block;
+	float: left;
+	margin-top: 17px;
+	overflow: hidden;
+}
+
+#header .fl_right {
+	display: block;
+	float: right;
+	width: 468px;
+	height: 60px;
+	margin-top: 21px;
+	overflow: hidden;
+}
+
+#header h1,#header p,#header ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	line-height: normal;
+}
+
+#header h1 a {
+	font-size: 36px;
+	color: #E60498;
+	background-color: #000000;
+}
+
+#header .fl_left p {
+	margin-top: 5px;
+}
+
+/* ----------------------------------------------Topbar-------------------------------------*/
+#topbar {
+	padding: 0;
+	z-index: 1000;
+}
+
+#topbar #search {
+	display: block;
+	float: right;
+	width: 243px;
+	margin: 10px 0 0 0;
+	padding: 0;
+}
+
+#tabcontainer {
+	display: block;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#tabcontainer ul#tabnav {
+	display: block;
+	height: 28px;
+	margin: 0;
+	padding: 12px 0 0 15px;
+	list-style: none;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	background: url("../images/bar_gradient.png") top left repeat-x;
+}
+
+#tabcontainer ul#tabnav li {
+	display: inline;
+	margin: 0 30px 0 0;
+	padding: 0;
+}
+
+/* --jQuery Tabs Specific - Only modify if you know what you are doing---*/
+.ui-tabs {
+	
+}
+
+.ui-tabs .ui-tabs-nav {
+	
+}
+
+.ui-tabs .ui-tabs-nav li {
+	
+}
+
+#container .ui-tabs .ui-tabs-nav li a {
+	color: #FFFFFF;
+	background-color: transparent;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected {
+	
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a,.ui-tabs .ui-tabs-nav li.ui-state-disabled a,.ui-tabs .ui-tabs-nav li.ui-state-processing a
+	{
+	
+}
+
+.ui-tabs .ui-tabs-nav li a,.ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a
+	{
+	
+}
+
+#container .ui-tabs li.ui-tabs-selected a {
+	color: #676767;
+	background-color: transparent;
+}
+
+.ui-tabs .ui-tabs-panel {
+	
+}
+
+#container .ui-tabs .ui-tabs-hide {
+	display: none;
+}
+
+body { /* 	font: bold 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	color: #666;
+	background-color: #F0F0F0; */
+	margin: 0;
+	padding: 0;
+	font-size: 13px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #999999;
+	background-color: #151515;
+}
+
+#big_wrapper {
+	border: 1px solid black;
+	max-width: 1000px;
+	margin: 0px auto;
+	text-align: left;
+}
+
+/* main menu */
+#top_header {
+	display: none;
+	border: 1px solid black;
+	padding: 20px
+}
+
+.top_menu {
+	background: #FF99CC;
+	width: 100%;
+	height: 30px;
+	display: -webkit-box;
+	-webkit-box-orient: horizontal;
+	-webkit-box-align: center;
+	display: -moz-box;
+	-moz-box-orient: horizontal;
+	-moz-box-align: center;
+}
+
+.menu_item {
+	border: 1px solid;
+	margin: 0px 5px 0px 5px;
+	padding: 10px;
+	text-align: center;
+	/* 	-webkit-box-flex:1;
+	-moz-box-flex:1; */
+}
+
+/* search tabs navigation */
+#search_header {
+	height: 32px;
+	overflow: hidden;
+	background: #F0F0F0;
+	background: -webkit-gradient(linear, left top, left bottom, from(#d1d1d1),
+		to(#e1e1e1) );
+	background: -moz-linear-gradient(top, #d1d1d1, #e1e1e1);
+	padding: 0 5px;
+}
+
+nav li {
+	list-style: none;
+	float: left;
+	height: 24px;
+	line-height: 24px;
+	-moz-box-shadow: 0 0 3px #888;
+	-webkit-box-shadow: 0 0 3px #888;
+	box-shadow: 0 0 3px #888;
+	-webkit-border-bottom-right-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-moz-border-radius-bottomright: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	margin: 0 2px;
+	width: 112px;
+	overflow: hidden;
+	position: relative;
+	background: #ccc;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ccc),
+		to(#aaa) );
+	background: -moz-linear-gradient(top, #ccc, #aaa);
+	font-size: 16px;
+	text-decoration: none;
+}
+
+nav li.selected {
+	background: #e1e1e1;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1),
+		to(#d1d1d1) );
+	background: -moz-linear-gradient(top, #e1e1e1, #d1d1d1);
+}
+
+nav li a,nav li a:visited,nav li a:hover {
+	list-style: none;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -2px;
+	height: 24px;
+	line-height: 24px;
+	width: 116px;
+	text-align: center;
+	color: #333;
+	font-size: 11px;
+	text-shadow: #e8e8e8 0 1px 0;
+	-moz-box-shadow: inset 0 1px 1px #888;
+	-webkit-box-shadow: inset 0 1px 1px #888;
+	box-shadow: inset 0 1px 1px #888;
+	font-size: 16px;
+	text-decoration: none;
+}
+
+nav li.selected a {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	font-size: 16px;
+	text-decoration: none;
+}
+
+#tool_box,#box {
+	float: left;
+	width: 500px;
+	height: 560px;
+	margin: 30px 0px 30px 10px;
+	padding: 5px;
+	background-color: white;
+	border: ridge #ff99cc;
+	/* border-radius: 15px; */
+	display: -webkit-box;
+	-webkit-box-orient: horizontal;
+	-webkit-box-align: center;
+	display: -moz-box;
+	-moz-box-orient: horizontal;
+	-moz-box-align: center;
+}
+
+#box {
+	float: left;
+	width: 350px;
+	height: 320px;
+	margin: 30px 30px 30px 10px;
+	padding: 15px 30px 15px 30px;
+	background-color: white;
+	border: ridge #ff99cc;
+	border-radius: 15px;
+}
+
+.search_result {
+	width: 95%;
+	height: 300px;
+	padding: 5px;
+	background-color: white;
+	border: ridge #ff99cc;
+}
+
+.hoverBox {
+	width: 95%;
+	height: 300px;
+	padding-left: 5px;
+	background-color: white;
+	margin-top: 40px;
+}
+
+/* grid present of search imgs */
+.grid_wrapper { /*    position: relative;
+   float: left;
+   left: 363px;
+   width: 306px; */
+	margin-bottom: 20px;
+	/* background-color: #cccccc */
+}
+
+.left1 {
+	position: relative;
+	float: left;
+	margin: 0px 10px 10px 10px;
+	width: 88px;
+	height: 88px;
+	/* background-color: #828282 */
+}
+
+.left2 {
+	position: relative;
+	float: left;
+	left: 15px;
+	width: 88px;
+	height: 88px;
+	/* background-color: #828282 */
+}
+
+.left3 {
+	position: relative;
+	float: left;
+	left: 25px;
+	width: 88px;
+	height: 88px;
+	/* background-color: #828282 */
+}
+
+.search_form {
+	margin: 5px 0px 5px 0px;
+}
+
+/* google search */
+.search-control {
+	width: auto;
+	font-size: 0.9em;
+	color: #777;
+}
+
+/*---- Override existing Google Image Search Layout----------- **/
+.gs-text-box,.gsc-tabhActive,.gs-watermark,.gsc-branding,.gsc-twiddle,.gsc-stats,.gsc-results-selector,.gsc-all-results-active
+	{
+	display: none;
+}
+
+/*-----Search Box---*/
+.gsc-input input {
+	font-size: 16px;
+	width: 250px;
+	padding: 6px 5px 6px 5px;
+	margin-top: 5px;
+	color: #aaa;
+	border: 2px solid #ccc; /* 
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px; */
+}
+
+input.gsc-search-button,.ui-widget button {
+	font-size: 16px;
+	margin: 5px 0 0 5px;
+}
+
+/*-----Image ---*/
+img.gs-image {
+	float: left;
+	margin: 0px 10px 10px 10px;
+	width: 88px;
+	height: 88px;
+	border: 5px solid #fff;
+	/* padding: 1px; */
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+img.gs-image:hover {
+	border: 5px solid #aaa;
+}
+
+img.selectImage {
+	float: left;
+	margin: 0px 10px 10px 10px;
+	width: 88px;
+	height: 88px;
+	border: 5px solid #aaa;
+	/* padding: 1px; */
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	/* draggable: true; */
+}
+
+/*--Paging---**/
+.gsc-cursor-page {
+	float: left;
+	text-shadow: 1px 1px 1px #fff;
+	cursor: pointer;
+	margin: 0px 8px 10px 0px;
+	padding: 3px 7px 3px 7px;
+	background: #ddd;
+	color: #000;
+	border: 1px solid #999;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
+.gsc-cursor-page:hover {
+	background: #fff;
+	color: #333;
+}
+
+.gsc-cursor-current-page {
+	background: #fff;
+	color: #333;
+}
+
+/****Demo Page Formatting****/
+.clear {
+	clear: both;
+}
+
+/**** Result Image ****/
+#imageContainer img {
+	margin: 10px 15px 0px 5px;
+	/* border: 1px solid #ddd; */
+/* 	width: auto;
+	height: auto; */
+}
+#result-list img: hover {
+	border: 3px solid #ddd; 
+}
+/* t-shirt */
+#main {
+	float: left;
+	width: 560px;
+	margin: 30px 0px 30px 0px;
+	background-color: white;
+	border: ridge #ff99cc;
+	/* border-radius: 15px; */
+	display: -webkit-box;
+	-webkit-box-orient: horizontal;
+	display: -moz-box;
+	-moz-box-orient: horizontal;
+}
+
+.tshirt {
+	width: 560px;
+	height: 600px;
+	border: 1px;
+	margin-top: 10px;
+/*	background: white url('../images/Template1.gif') no-repeat center top;*/
+}
+
+#front,#back {
+	position: relative;
+}
+
+.draw_border {
+	border: 3px dashed #cacaca;
+}
+
+#container2 {
+	border: 3px dashed #cacaca;
+	width: 560px;
+	height: 600px;
+	position: relative;
+	left: 150px;
+	top: 100px;
+	text-align: center;
+	font-size: 30px;
+	color: #cacaca;
+/* 	position: relative;
+ */}
+
+#canvas2 {
+	background-color: #FFF;
+	border: 1px solid #FFF;
+}
+
+#userList,#wPaint {
+	border: 3px dashed #cacaca;
+	width: 265px;
+	height: 340px;
+	position: relative;
+	left: 150px;
+	top: 100px;
+	text-align: center;
+	font-size: 30px;
+	color: #cacaca;
+}
+
+#clr div {
+	cursor: pointer;
+	cursor: hand;
+	width: 20px;
+	height: 20px;
+	float: left;
+}
+
+/* ----------------------------------------------Wrapper-------------------------------------*/
+/* 
+.userList {
+	width: 10em;
+	height: 10em;
+	overflow: auto;
+	border: solid 1px black;
+} */
+.draggedUser {
+	zoom: 1;
+	opacity: .2;
+	-moz-opacity: .2;
+	filter: alpha(opacity =       20)
+}
+
+div.showHelp {
+	border: solid 1px white;
+	visibility: visible;
+}
+
+#unassignedUsers:hover {
+	width: 265px;
+	height: 340px;
+	position: relative;
+	background-color: #ffcccc;
+}
+
+#restrictedUsers:hover {
+	width: 265px;
+	height: 340px;
+	position: relative;
+	background-color: #ffffcc;
+}
+
+#powerUsers:hover {
+	width: 265px;
+	height: 340px;
+	position: relative;
+	background-color: #ccffcc;
+}
+
+div.wrapper {
+	display: block;
+	width: 100%;
+	margin: 0;
+	text-align: left;
+	background: url("../images/pink skull.png") no-repeat fixed right bottom;
+}
+
+div.wrapper h1,div.wrapper h2,div.wrapper h3,div.wrapper h4,div.wrapper h5,div.wrapper h6
+	{
+	margin: 0 0 15px 0;
+	padding: 0;
+	font-size: 20px;
+	font-weight: normal;
+	line-height: normal;
+}
+
+.col1,.col1 a {
+	color: #666666;
+	background-color: #000000;
+}
+
+.col2 {
+	color: #FFFFFF;
+	background-color: #562051;
+}
+
+#the_footer {
+	clear: both;
+	text-align: center;
+	padding: 10px;
+	border-top: 2px solid;
+}

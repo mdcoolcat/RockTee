@@ -1,0 +1,19 @@
+.toast-container
+{
+	position:fixed;
+	text-align: center;
+	background-color: #444;
+	border:2px solid #666;
+	padding:5px;
+	color:#FFF;
+	z-index: 2000;
+	font-size: 20px;
+	
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+	-webkit-box-shadow: 3px 3px 6px 1px #7a7a7a;
+	-moz-box-shadow: 3px 3px 6px 1px #7a7a7a;
+	box-shadow: 3px 3px 6px 1px #7a7a7a; 
+}

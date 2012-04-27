@@ -1,0 +1,78 @@
+/*
+Template Name: PhotoFolio
+File: Gallery CSS
+Author: OS Templates
+Author URI: http://www.os-templates.com/
+Licence: <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>
+*/
+
+.like, .favor {
+  	float: left;
+	margin: 0px 5px 5px 0px;
+	vertical-align:text-bottom; 
+	
+	/* display:block;
+	
+	height:20px; */
+	z-index: 2000; 
+}
+
+
+
+.gallery, .collections {
+	display:block;
+	width:100%;
+	padding:20px 0 8px 0;
+	
+	}
+
+.gallery ul, .collections ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+	}
+
+.gallery li{
+	display:block;
+	position:relative;
+	float:left;
+	width:150px;
+	height:150px;
+	margin:0px 20px 0px 10px;
+	padding:5px;
+	}
+.collections li{
+	display:block;
+	position:relative;
+	float:left;
+	width:300px;
+	height:430px;
+	margin:0px 12px 10px 0px;
+	padding:0;
+	border: 2px ridge #dcdcdc;
+	border-radius: 20px;
+	}
+	
+.collections div {
+	margin: 10px;
+	padding: 5px;
+	border-top: 1px solid #dcdcdc;
+}
+
+.gallery li a img{
+	display:block;
+	width:150px;
+	height:150px;
+	margin:0;
+	}
+
+.collections img{
+	display:block;
+	/* width:290px; */
+	/* height:150px; */
+	/* margin:10px 5px 5px 5px; */
+	}
+	
+.gallery li.last{
+	margin-right:0;
+	}
